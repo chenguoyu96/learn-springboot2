@@ -1,0 +1,54 @@
+server:
+  port: 9000
+spring:
+  datasource:
+    platform: mysql
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.223.133:3306/graduate?useUnicode=true&serverTimeZone=HongKong&characterEncoding=UTF-8&useSSL=false
+    hikari:
+      maximum-pool-size: 10
+      connection-test-query: SELECT 1
+    type: com.zaxxer.hikari.HikariDataSource
+  redis:
+    database: 0
+    host: 192.168.223.133
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait:
+        min-idle: 0
+  mvc:
+    static-path-pattern: /static/**
+  servlet:
+    multipart:
+      enabled: true # 是否支持批量上传
+      max-file-size: 10MB # 上传文件最大为 10M
+      max-request-size: 10MB # 上传请求最大为 10M
+      file-size-threshold: 0 # 文件大小阈值，当大于这个阈值时将写入到磁盘，否则存在内存中（默认值0 一般情况下不用特意修改）
+      location:   # 上传文件的临时目录 (一般不用特意修改)
+      resolve-lazily: false # 判断是否要延迟解析文件（相当于懒加载，一般情况下不用特意修改）
+file:
+  upload:
+    path: /file/upload/
+    tmp: /file/upload/tmp #上传文件的临时目录
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: org.chenguoyu.learn.springboot.mybatis  # 注意：对应实体类的路径
+
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+logging:
+  level:
+    org:
+      project:
+        graduation:
+          mapper:  debug
