@@ -1,5 +1,6 @@
 package org.chenguoyu.learn.springboot.file.upload;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +23,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/file/upload")
+@Api(tags = "文件上传控制器类")
 public class FileUploadController {
     @Value("${file.upload.path}")
     private String path;
